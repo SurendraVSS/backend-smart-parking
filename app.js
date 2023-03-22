@@ -15,8 +15,8 @@ const mongoose = require("mongoose");
 const Stripe = require("stripe");
 
 const app = express();
-const PUBLISHABLE_KEY = 'pk_live_51I8KRCITQufzaXIXCv0QLa2nNyxuwJQBcf2xJDNb4hovFvc0Aw0XYHGSTZIdZnwVAa740CTnguhyL9uI3JcMTrr100ut9DtiSh';
-const SECRET_KEY = "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";
+const PUBLISHABLE_KEY = '';
+const SECRET_KEY = "";
 
 const stripe = Stripe(SECRET_KEY, { apiVersion: "2020-08-27" });
 
