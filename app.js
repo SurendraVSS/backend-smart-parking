@@ -12,7 +12,14 @@ const notice = require("./model/notice");
 const parking = require("./model/parking");
 const event = require("./model/event");
 const mongoose = require("mongoose");
+const Stripe = require("stripe");
+
 const app = express();
+const PUBLISHABLE_KEY = 'pk_live_51I8KRCITQufzaXIXCv0QLa2nNyxuwJQBcf2xJDNb4hovFvc0Aw0XYHGSTZIdZnwVAa740CTnguhyL9uI3JcMTrr100ut9DtiSh';
+const SECRET_KEY = "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";
+
+const stripe = Stripe(SECRET_KEY, { apiVersion: "2020-08-27" });
+
 app.use(express.json());
 app.use(
   express.urlencoded({
@@ -34,6 +41,25 @@ app.get("/api/emergency_number", async (req, res) => {
   }
 });
 
+
+app.post("/create-payment-intent", async (req, res) => {
+  try {
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: 5, //lowest denomination of particular currency
+      currency: "usd",
+      payment_method_types: ["card"], //by default
+    });
+
+    const clientSecret = paymentIntent.client_secret;
+
+    res.json({
+      clientSecret: clientSecret,
+    });
+  } catch (e) {
+    console.log(e.message);
+    res.json({ error: e.message });
+  }
+});
 app.get("/api/parking", auth, async (req, res) => {
   try {
     const userId = req.user.user_id;
