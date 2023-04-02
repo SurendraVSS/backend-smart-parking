@@ -7,6 +7,8 @@ const meetings = require("./model/meetings");
 const auth = require("./middleware/auth");
 var bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
+var cors = require('cors');
+
 const emergency_number = require("./model/emergency_number");
 const notice = require("./model/notice");
 const parking = require("./model/parking");
@@ -17,6 +19,7 @@ const Stripe = require("stripe");
 const app = express();
 const PUBLISHABLE_KEY = '';
 const SECRET_KEY = "";
+app.use(cors())
 
 const stripe = Stripe(SECRET_KEY, { apiVersion: "2020-08-27" });
 
