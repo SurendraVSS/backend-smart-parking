@@ -21,7 +21,12 @@ const Stripe = require("stripe");
 const app = express();
 const PUBLISHABLE_KEY = '';
 const SECRET_KEY = "";
-app.use(cors())
+const corsOptions ={
+   origin:'*', 
+   credentials:true,            //access-control-allow-credentials:true
+   optionSuccessStatus:200,
+}
+app.use(cors(corsOptions))
 
 const stripe = Stripe(SECRET_KEY, { apiVersion: "2020-08-27" });
 
