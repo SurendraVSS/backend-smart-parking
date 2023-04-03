@@ -32,13 +32,13 @@ app.use(
   })
 );
 var razorpay = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY_ID,
-  key_secret: process.env.RAZORPAY_KEY_SECRET,
+  key_id: 'rzp_test_ddWubyGOUv3P5e',
+  key_secret: "Wv6w4jHtjLe40G7WBB48n4wh",
 });
 
 
 app.post("/verification", (req, res) => {
-  const secret = "Wv6w4jHtjLe40G7WBB48n4wh";
+  const secret = "razorpaysecret";
 
   console.log(req.body);
 
