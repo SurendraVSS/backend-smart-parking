@@ -38,7 +38,7 @@ var razorpay = new Razorpay({
 
 
 app.post("/verification", (req, res) => {
-  const secret = "razorpaysecret";
+  const secret = "Wv6w4jHtjLe40G7WBB48n4wh";
 
   console.log(req.body);
 
